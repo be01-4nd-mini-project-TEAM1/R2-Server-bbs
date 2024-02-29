@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="|${pageName}|"></title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .user-info {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .user-info div {
+            margin-bottom: 10px;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .btn-secondary {
+            padding: 10px;
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        table {
+		width: 80%;
+		border-collapse: collapse;
+		margin-top: 20px;
+		}
+
+		th, td {
+		padding: 12px;
+		border: 1px solid #ddd;
+		text-align: center;
+		}
+
+		th {
+		background-color: #4caf50;
+		color: white;
+		}
+    </style>
+</head>
+<body>
+<div class="logo">
+            <a href="/session-login/todo">
+                <img width="200" height="200" th:src="@{/images/a2.jpeg}" alt="로고 이미지">
+            </a>
+   <!--  <div class="user-info">
+        <h1>유저 정보</h1>
+        <hr/>
+        <div th:text="|아이디 : ${user.loginId}|"></div>
+        <div th:text="|닉네임 : ${user.nickname}|"></div>
+        <div th:text="|팀 : ${user.teamid}|"></div>
+        <div th:text="|권한 : ${user.role}|"></div>
+    </div> -->
+
+    <div class="btn-group">
+        <button class="btn-secondary" onclick="location.href='/session-login/todo/logout'">로그아웃</button>
+        <button class="btn-secondary" onclick="location.href='/session-login/todo/all'">개인 할 일</button>
+    </div>
+    
+        <table border="1">
+		<thead>
+			<tr>
+				<th> &nbsp; 고유ID &nbsp;</th>
+				<th> &nbsp; 아이디 &nbsp;</th>
+				<th> &nbsp; 닉네임 &nbsp;</th>
+				<th> &nbsp; 팀 &nbsp;</th>
+				<th> &nbsp; 권한 &nbsp;</th>
+			</tr>
+		</thead>
+		<tbody>		
+			<tr th:block th:each="userinfo : ${userinfo}">
+				<td align='center' th:text="${userinfo.Id}"></td>
+				<td align='center' th:text="${userinfo.loginId}"></td>
+				<td align='center' th:text="${userinfo.nickname}"></td>
+				<td align='center' th:text="${userinfo.teamid}"></td>
+				<td align='center' th:text="${userinfo.role}"></td>
+			</tr>
+		</tbody>	
+	</table>	
+	
+</body>
+</html>
